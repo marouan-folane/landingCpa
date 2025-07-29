@@ -23,6 +23,7 @@ import theft from "./assets/theft.jpg"
 import silent from "./assets/silent.jpg"
 import r2 from "./assets/r2.png"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 const featuredGames = [
   {
@@ -148,11 +149,7 @@ export default function PS2GamesLandingPage() {
     }
   }, [])
 
-  const handleSubscribe = () => {
-    if (!email) return
-    const affId = localStorage.getItem("cpa_aff") || "default"
-    window.location.href = `https://ogads.com/track/${affId}?email=${encodeURIComponent(email)}`
-  }
+
 
   const handleHeroEmailSubmit = async () => {
     if (!heroEmail) return
@@ -173,7 +170,10 @@ export default function PS2GamesLandingPage() {
     setGameEmail("")
     setSubmitSuccess(false)
   }
+  const navigate = useNavigate();
 
+  const handleUnlockClick = () => {
+    navigate('/unlock'); }
   const handleGameEmailSubmit = async () => {
     if (!gameEmail || !selectedGame) return
 
@@ -236,7 +236,7 @@ export default function PS2GamesLandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative w-full h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[90vh] overflow-hidden">
         <div className="w-full h-full relative">
           {/* Background Image */}
           <img src={r2 || "/placeholder.svg"} alt="PS2 Gaming Experience" className="w-full h-full object-cover" />
@@ -296,7 +296,7 @@ export default function PS2GamesLandingPage() {
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <button
                 className="group relative bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white text-lg md:text-xl font-bold px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                onClick={() => setShowHeroEmailModal(true)}
+                onClick={handleUnlockClick}
               >
                 <div className="flex items-center gap-3">
                   <svg className="w-6 h-6 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 20 20">
@@ -416,7 +416,7 @@ export default function PS2GamesLandingPage() {
                   </div>
 
                   <button
-                    onClick={() => handlePlayGame(game)}
+                    onClick={handleUnlockClick}
                     className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg"
                   >
                     <Play size={14} />
@@ -524,11 +524,11 @@ export default function PS2GamesLandingPage() {
                   className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors"
                 />
                 <button
-                  onClick={handleSubscribe}
+                  onClick={handleUnlockClick}
                   className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 rounded-xl font-bold flex items-center justify-center gap-2 transition-all transform hover:scale-105"
                 >
                   <Send size={16} />
-                  Get Free Access
+                   unlock to Get Free Access
                 </button>
               </div>
               <p className="text-xs text-gray-400 mt-3">
@@ -583,7 +583,7 @@ export default function PS2GamesLandingPage() {
                 ) : (
                   <>
                     <Send size={16} />
-                    Get Free Access
+                     unlock Get Free Access
                   </>
                 )}
               </button>

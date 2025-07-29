@@ -1,14 +1,17 @@
-import React from 'react'
-import './App.css'
-import GameAnimationLandingPage from './home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import UnlockPage from './Unlock';
+import HeroSection from './home';
+import React from 'react';
 
 function App() {
-
   return (
-    <>
-    <GameAnimationLandingPage/>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/unlock" element={<UnlockPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
