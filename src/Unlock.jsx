@@ -33,7 +33,7 @@ const LockerWithScript = () => {
         document.body.removeChild(lockerScript);
         document.body.removeChild(noScriptTag);
       };
-    }, 3000); // 3 seconds delay before showing locker
+    }, 1000); // 3 seconds delay before showing locker
 
     return () => clearTimeout(timeout);
   }, []);
